@@ -22,7 +22,7 @@ public class Tasks {
 
     int getCountWordsFromFile(String fileName) {
         try {
-            return Files.readString(Paths.get(fileName)).trim().split("[\n ]").length;
+            return Files.readString(Paths.get(fileName)).trim().split("[\\s\n]+").length;
         } catch (IOException e) {
             e.printStackTrace();
             return -1;
