@@ -1,5 +1,6 @@
 import java.io.*;
 import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Objects;
@@ -20,16 +21,12 @@ public class Tasks {
     }
 
     int getCountWordsFromFile(String fileName) {
-        int countWords = 0;
-        try (BufferedReader reader = new BufferedReader(new FileReader(fileName))) {
-            String line;
-            while ((line = reader.readLine()) != null) {
-                countWords += line.trim().split(" ").length;
-            }
+        try {
+            return Files.readString(Paths.get(fileName)).trim().split("[\n ]").length;
         } catch (IOException e) {
             e.printStackTrace();
+            return -1;
         }
-        return countWords;
     }
 
     ArrayList<Object> reverseArray(ArrayList<Object> arr) {
